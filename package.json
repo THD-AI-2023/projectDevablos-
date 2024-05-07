@@ -1,0 +1,33 @@
+{
+  "name": "chatbot-devablos",
+  "version": "0.0.1",
+  "description": "The Chabot Project associated to AIN-B-2-Internet-Technologies-SS-24",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "jest",
+    "start" : "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/THD-AI-2023/projectDevablos.git"
+  },
+  "keywords": [
+    "express",
+    "chatbot",
+    "npm",
+    "node",
+    "openai",
+    "webapp",
+    "mvp"
+  ],
+  "author": "Devablos Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/THD-AI-2023/projectDevablos/issues"
+  },
+  "homepage": "https://github.com/THD-AI-2023/projectDevablos#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
