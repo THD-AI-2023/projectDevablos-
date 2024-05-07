@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/THD-AI-2023/projectDevablos.git"
+    "url": "git+https://github.com/THD-AI-2023/Devablos-Project.git"
   },
   "keywords": [
     "express",
@@ -24,9 +24,9 @@
   "author": "Devablos Team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/THD-AI-2023/projectDevablos/issues"
+    "url": "https://github.com/THD-AI-2023/Devablos-Project/issues"
   },
-  "homepage": "https://github.com/THD-AI-2023/projectDevablos#readme",
+  "homepage": "https://github.com/THD-AI-2023/Devablos-Project#readme",
   "dependencies": {
     "express": "^4.19.2"
   }
