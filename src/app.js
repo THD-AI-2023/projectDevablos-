@@ -20,7 +20,6 @@ function sendMessage(user_message) {
 app.post('/send-message', (req, res) => {
     const userMessage = req.body.message;
     sendMessage(userMessage).then(response => {
-        console.log("Works!")
         res.json({reply: response}); // Sends response as JSON //
     })
 });
