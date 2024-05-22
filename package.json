@@ -28,9 +28,11 @@
   },
   "homepage": "https://github.com/THD-AI-2023/Devablos-Project#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "openai": "^4.46.1"
+    "openai": "^4.46.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
