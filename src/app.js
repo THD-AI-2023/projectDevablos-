@@ -2,11 +2,20 @@ const main = require('./lib/post_request');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const RateLimit = require('express-rate-limit');
 const app = express();
 
 // For parsing the user input
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
+
+var limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
 
 // Hosts Webpage
 app.get('/', (req, res) => {
