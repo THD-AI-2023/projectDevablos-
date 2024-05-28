@@ -1,6 +1,6 @@
 // src/components/Chat.js
 import React, { useState } from 'react';
-import ChatInput from './ChatInput.js';
+import ChatInput from './ChatInput';
 import Message from './Message';
 import './Chat.css';
 
@@ -8,7 +8,9 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   const addMessage = (message, isBot = false) => {
-    setMessages([...messages, { text: message, isBot }]);
+    if (message) {
+      setMessages((prevMessages) => [...prevMessages, { text: message, isBot }]);
+    }
   };
 
   return (
