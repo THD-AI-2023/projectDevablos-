@@ -1,12 +1,13 @@
 /* src/components/Chat.css */
 .chat-container {
     display: flex;
+    position: absolute;
     flex-direction: column;
     justify-content: space-between;
-    height: 80vh;
-    width: 90%;
+    height: 96%;
+    width: 98%;
     margin: auto;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     border-radius: 5px;
     padding: 10px;
     background-color: #ffffff;
@@ -29,6 +30,7 @@
     border-radius: 5px;
     width: 90%;
     height: 80px;
+    font-size: large;
   }
   
   .chat-input button {
@@ -40,9 +42,13 @@
     cursor: pointer;
     border-radius: 5px;
     margin-left: 5px;
+    font-size: large;
   }
 
   .chat-input button:hover {
     background-color: white;
     color: #000000;
+    border-color: #000000;
+    border-radius: 5px;
+    margin-left: 5px;
   }
