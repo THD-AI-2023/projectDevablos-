@@ -5,17 +5,24 @@
     border-radius: 5px;
     display: flex;
     font-size: large;
-    align-items: center;
+    max-width: 50%;
+    max-height: 100px;
+    overflow-y: auto;
+    word-wrap: break-word;
   }
   
   .user {
-    background-color: #004085;
+    background-color: #00162e;
     color: white;
-    justify-content: flex-end;
+    width: fit-content;
+    margin-left: auto;
+    right: 0%;
+    justify-self: auto;
   }
   
   .bot {
     background-color: #e7e7e7;
     color: black;
     justify-content: flex-start;
+    width: fit-content;
   }

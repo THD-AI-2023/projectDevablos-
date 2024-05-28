@@ -31,24 +31,19 @@
     width: 90%;
     height: 80px;
     font-size: large;
+    overflow-y: auto;
+    text-transform: justify;
+    max-height: 150px;
   }
   
   .chat-input button {
     width: 10%;
     padding: 10px;
     border: none;
-    background-color: #000000;
+    background-color: #00162e;
     color: white;
     cursor: pointer;
     border-radius: 5px;
     margin-left: 5px;
     font-size: large;
-  }
-
-  .chat-input button:hover {
-    background-color: white;
-    color: #000000;
-    border-color: #000000;
-    border-radius: 5px;
-    margin-left: 5px;
   }
