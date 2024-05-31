@@ -10,17 +10,17 @@ const openai = new OpenAI({
 async function main(user_message) {
     try {
         const completion = await openai.chat.completions.create({
-            messages: [{role: "system", content: "You are a helpful assistant."},
+            messages: [
+                { role: "system", content: "You are a helpful assistant." },
                 ...history.retrieve_history(),
-                {role: "user", content: user_message}], // make content the user input
-            model: "gpt-4o",
+                { role: "user", content: user_message }
+            ],
+            model: "gpt-4o"
         });
-        
-        // Adds user input and API response to history. //
-        history.add_to_history(user_message, completion.choices[0].message.content);
 
-        console.log(completion.choices[0].message.content);
-        return (completion.choices[0].message.content);
+        const responseContent = completion.choices[0].message.content;
+        history.add_to_history(user_message, responseContent);
+        return responseContent;
 
     } catch (error) {
         console.error("There was an error calling the API: ", error);

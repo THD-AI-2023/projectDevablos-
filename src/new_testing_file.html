@@ -19,15 +19,14 @@
 <body>
 <h1>Ask the Chat Bot</h1>
 <input type="text" id="message_input" placeholder="Type your message here...">
-<script>
-    // Gets user input from element.
+<script> //The new_fetch_response.js didn't work with the src reference, so I put the whole thing here instead. But I kept it as well, you can find it in the lib folder//
+    // Gets user input from element. //
     const msg_content = document.getElementById('message_input');
-
+    console.log("got input");
     function send_message() {
         const userInput = msg_content.value;
         console.log(userInput);
-
-        // Sends POST request and prints output.
+        // Sends POST request and prints output. //
         fetch('/send-message', {
             method: 'POST',
             headers: {
@@ -35,11 +34,11 @@
             },
             body: JSON.stringify({ text: userInput })
         })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('response').innerText = data.content;
-            update_history();
-        });
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').innerText = data.content; //created a temporary div to test the output
+                    update_history();
+                });
     }
 
     function update_history() {
@@ -58,6 +57,7 @@
 
     msg_content.addEventListener('keypress', function (event) {
         if (event.key === "Enter") {
+            console.log("I got called");
             event.preventDefault();
             send_message();
         }
