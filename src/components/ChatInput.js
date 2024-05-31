@@ -1,4 +1,3 @@
-// src/components/ChatInput.js
 import React, { useState } from 'react';
 
 const ChatInput = ({ addMessage }) => {
@@ -7,7 +6,6 @@ const ChatInput = ({ addMessage }) => {
   const handleSend = () => {
     if (input.trim()) {
       addMessage(input);
-      addMessage('How can I help you today?', true); // Bot response
       setInput('');
     }
   };

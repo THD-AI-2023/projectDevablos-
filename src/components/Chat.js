@@ -1,15 +1,21 @@
-// src/components/Chat.js
 import React, { useState } from 'react';
 import ChatInput from './ChatInput';
 import Message from './Message';
+import { fetchAIResponse } from '../lib/openai';
 import './Chat.css';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
 
-  const addMessage = (message, isBot = false) => {
+  const addMessage = async (message, isBot = false) => {
     if (message) {
-      setMessages((prevMessages) => [...prevMessages, { text: message, isBot }]);
+      const newMessage = { text: message, isBot };
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+      if (!isBot) {
+        const response = await fetchAIResponse(message);
+        setMessages((prevMessages) => [...prevMessages, { text: response, isBot: true }]);
+      }
     }
   };
 
