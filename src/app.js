@@ -1,41 +1,52 @@
-const main = require('./lib/post_request');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const RateLimit = require('express-rate-limit');
+const rateLimit = require('express-rate-limit');
+const { add_to_history, retrieve_history } = require('./lib/chat_history');
+const { getAIResponse } = require('./lib/models');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const app = express();
 
-// For parsing the user input
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
 
-var limiter = RateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // max 100 requests per windowMs
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    handler: (req, res) => {
+        res.status(429).json({ message: "Too many requests, please try again later." });
+    }
 });
 
-// apply rate limiter to all requests
+app.set('trust proxy', 1);
 app.use(limiter);
 
-// Hosts Webpage
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'testing_file.html'));
+    res.sendFile(path.join(__dirname, 'new_testing_file.html'));
 });
 
-function sendMessage(user_message) {
-    return main(user_message);
-}
+app.post('/send-message', async (req, res) => {
+    const userText = req.body.text;
+    if (!userText) {
+        return res.status(400).json({ message: "No text provided." });
+    }
 
-// Sends variable to main function
-// Returns value returned by main function
-app.post('/send-message', (req, res) => {
-    const userMessage = req.body.message;
-    sendMessage(userMessage).then(response => {
-        res.json({reply: response}); // Sends response as JSON //
-    })
+    try {
+        const aiResponse = await getAIResponse(userText);
+        add_to_history(userText, aiResponse);
+        res.json({ content: aiResponse });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.get('/chat-history', (req, res) => {
+    res.json(retrieve_history());
 });
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
