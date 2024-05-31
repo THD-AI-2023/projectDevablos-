@@ -5,23 +5,19 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-const fetchAIResponse = async (userText) => {
+const fetchAIResponse = async (userText, chatHistory) => {
+  const messages = [
+    { role: "system", content: "You are Devabot ✨, a funny informative assistant. \n- Output only in txt paragraphs.\n- Provide clean production ready outputs." },
+    ...chatHistory.slice(-20).map(msg => ({ role: msg.isBot ? "assistant" : "user", content: msg.text })),
+    { role: "user", content: userText }
+  ];
+
   const response = await openai.chat.completions.create({
-    messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      { role: "user", content: userText },
-    ],
-    model: "gpt-4o",
+    messages: messages,
+    model: "gpt-3.5-turbo-0125"
   });
 
-  console.log(response);
-
-  // if (!response.ok) {
-  //   const errorDetails = await response.json();
-  //   throw new Error(`API error: ${errorDetails.error.message}`);
-  // }
-
-  return response.choices[0].message.content
+  return response.choices[0].message.content;
 };
 
 export { fetchAIResponse };
