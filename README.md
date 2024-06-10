@@ -8,23 +8,26 @@ The development of the Devablos Chatbot MVP will be structured around a monolith
 ### Project Structure
 
 ```
-branch: main
+devablos-project/
+├── public/
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
 ├── src/
-│   ├── frontend/
-│   │   ├── public/
-│   │   ├── src/
-│   │   ├── package.json
-│   │   └── ...
-│   ├── backend/
-│   │   ├── app.js
-│   │   ├── lib/
-│   │   ├── utils/
-│   │   └── package.json
+│   ├── components/
+│   │   ├── Chat.js
+│   │   ├── ChatInput.js
+│   │   ├── Message.js
+│   │   └── Message.css
+│   ├── lib/
+│   │   ├── openai.js
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   ├── index.css
+│   └── reportWebVitals.js
 ├── package.json
-├── .gitignore
-├── LICENSE
-├── SECURITY.md
-└── README.md
+└── .env.example
 ```
 
 ### Development Plan
